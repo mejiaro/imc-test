@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  route: one
+  cbm: 1
+  price: 1
+
+two:
+  customer: two
+  route: two
+  cbm: 1
+  price: 1
