@@ -7,7 +7,7 @@ class Route < ApplicationRecord
   validate :origin_is_different_from_destination
 
   validates :price, presence: true
-
+ 
   def origin_is_different_from_destination
   	if origin == destination
   		errors.add(:base, 'Origin and Destination ports have to be different.')

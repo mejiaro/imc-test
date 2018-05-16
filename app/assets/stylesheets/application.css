@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
+
+.demo-graphs {
+  padding: 16px 32px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
