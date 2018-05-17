@@ -18,7 +18,4 @@ class Booking < ApplicationRecord
   	self.price = (route.price * cbm)
   end
 
-
-
-
 end
