@@ -2,31 +2,20 @@
 	<div class="mdl-cell mdl-cell--6-col mdl-card mdl-shadow--2dp">
 		<!-- CARD -->
 		  <div class="mdl-card__title">
-		    <h2 class="mdl-card__title-text">Capacity and service sold</h2>
+		    <h2 class="mdl-card__title-text">Sales</h2>
 		  </div>
-		  <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+		  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 		  <thead>
 		    <tr>
-		      <th class="mdl-data-table__cell--non-numeric">Material</th>
-		      <th>Quantity</th>
-		      <th>Unit price</th>
+		      <th>Capacity</th>
+		      <th>Service</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		    <tr>
-		      <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+		      <td>Acrylic (Transparent)</td>
 		      <td>25</td>
 		      <td>$2.90</td>
-		    </tr>
-		    <tr>
-		      <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-		      <td>50</td>
-		      <td>$1.25</td>
-		    </tr>
-		    <tr>
-		      <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-		      <td>10</td>
-		      <td>$2.35</td>
 		    </tr>
 		  </tbody>
 		</table>
@@ -74,56 +63,78 @@
 		  </div>
 		<div id="globe" class="mdl-shadow--2dp"></div>
 		<script type="text/javascript">
-			Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/globe_contours.csv', function(err, rows){
-      function unpack(rows, key) {
-          return rows.map(function(row) { return row[key]; });}
+			
+		var data = [
+					<% Route.most_popular.each do |route|  %>
+					{ type: 'scattergeo',
+						name: "<%= route.origin.name %> - <%= route.destination.name %>",
+			      lat: [ <%= route.origin.lat %>, <%= route.destination.lat %> ],
+			      lon: [ <%= route.origin.lng %>, <%= route.destination.lng %> ],
+			      mode: 'lines',
+			      line:{
+			          width: 2,
+			          color: ['rgb(213,62,79)','rgb(244,109,67)','rgb(253,174,97)','rgb(254,224,139)','rgb(255,255,191)','rgb(230,245,152)','rgb(171,221,164)','rgb(102,194,165)','rgb(50,136,189)'].sample
+			      }
+			    },
+					<% end %>
+		    ];
+		   	
 
-// var data = [];
-
-var data = [{
-      type: 'scattergeo',
-      lat: [ 40.7127, 51.5072 ],
-      lon: [ -74.0059, 0.1275 ],
-      mode: 'lines',
-      line:{
-          width: 2,
-          color: 'blue'
-      }
-    }];
-
-
-  	console.log(data)
-    var layout = {
-        geo: {
-            projection: {
-                type: 'orthographic',
-                rotation: {
-                    lon: -100,
-                    lat: 40
-                },
-            },
-            showocean: true,
-            oceancolor: 'rgb(0, 255, 255)',
-            showland: true,
-            landcolor: 'rgb(230, 145, 56)',
-            showlakes: true,
-            lakecolor: 'rgb(0, 255, 255)',
-            showcountries: true,
-            lonaxis: {
-                showgrid: true,
-                gridcolor: 'rgb(102, 102, 102)'
-            },
-            lataxis: {
-                showgrid: true,
-                gridcolor: 'rgb(102, 102, 102)'
-            }
-        }
- };
-  
-Plotly.plot(globe, data, layout, {showLink: false});
-  
-});
+		  	console.log(data)
+		    var layout = {
+		        geo: {
+		            projection: {
+		                type: 'orthographic',
+		                rotation: {
+		                    lon: -100,
+		                    lat: 40
+		                },
+		            },
+		            showocean: true,
+		            oceancolor: 'rgb(0, 255, 255)',
+		            showland: true,
+		            landcolor: 'rgb(230, 145, 56)',
+		            showlakes: true,
+		            lakecolor: 'rgb(0, 255, 255)',
+		            showcountries: true,
+		            lonaxis: {
+		                showgrid: true,
+		                gridcolor: 'rgb(102, 102, 102)'
+		            },
+		            lataxis: {
+		                showgrid: true,
+		                gridcolor: 'rgb(102, 102, 102)'
+		            }
+		        }
+		 };
+		  
+		Plotly.plot(globe, data, layout, {showLink: false});
+		  
 		</script>
 	</div>
-	
+	<div class="mdl-cell mdl-cell--6-col mdl-card mdl-shadow--2dp">
+		<!-- CARD -->
+		  <div class="mdl-card__title">
+		    <h2 class="mdl-card__title-text">Most popular routes</h2>
+		  </div>
+		  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+		  <thead>
+		    <tr>
+		      <th>Origin</th>
+		      <th>Destination</th>
+		      <th>Bookings</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<% @most_popular_routes.each do |route| %>
+		  		<tr>
+		  			<td><%= route.origin.name %></td>
+		  			<td><%= route.destination.name %></td>
+		  			<td><%= route.bookings_count %></td>
+		  		</tr>
+		  	<% end %>
+		  </tbody>
+		</table>
+		<!-- CARD -->
+	</div>
 </div>

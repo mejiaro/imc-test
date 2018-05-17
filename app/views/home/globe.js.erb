@@ -1,0 +1,56 @@
+var data = [
+				Route.most_popular.each do |route|
+				{
+		      type: 'scattergeo',
+		      lat: [ <%= route.origin.lat %>, <%= route.destination.lat %> ],
+		      lon: [ -74.0059, 0.1275 ],
+		      mode: 'lines',
+		      line:{
+		          width: 2,
+		          color: 'blue'
+		      }
+		    },
+
+		    {
+		      type: 'scattergeo',
+		      lat: [ 45.7127, 50.5072 ],
+		      lon: [ -89.0059, 13.1275 ],
+		      mode: 'lines',
+		      line:{
+		          width: 2,
+		          color: 'blue'
+		      }
+		    },
+
+
+		    ];
+		   	
+
+
+		  	console.log(data)
+		    var layout = {
+		        geo: {
+		            projection: {
+		                type: 'orthographic',
+		                rotation: {
+		                    lon: -100,
+		                    lat: 40
+		                },
+		            },
+		            showocean: true,
+		            oceancolor: 'rgb(0, 255, 255)',
+		            showland: true,
+		            landcolor: 'rgb(230, 145, 56)',
+		            showlakes: true,
+		            lakecolor: 'rgb(0, 255, 255)',
+		            showcountries: true,
+		            lonaxis: {
+		                showgrid: true,
+		                gridcolor: 'rgb(102, 102, 102)'
+		            },
+		            lataxis: {
+		                showgrid: true,
+		                gridcolor: 'rgb(102, 102, 102)'
+		            }
+		        }
+		 };

@@ -1,6 +1,6 @@
 class Booking < ApplicationRecord
   belongs_to :customer
-  belongs_to :route
+  belongs_to :route, counter_cache: true
 
   before_save :calculate_price
 
