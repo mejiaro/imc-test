@@ -9,7 +9,7 @@ class Route < ApplicationRecord
 
   validates :price, presence: true
 
-  scope :most_popular, -> {eager_loaodrder(bookings_count: :desc).limit(5)}
+  scope :most_popular, -> {order(bookings_count: :desc).limit(5)}
 
   ERROR = 'Origin and Destination ports have to be different.'.freeze
 
