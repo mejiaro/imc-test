@@ -17,11 +17,11 @@ class Route < ApplicationRecord
   	errors.add(:base, ERROR) if origin == destination
   end
 
-  # def self.most_popular_lats
-  # 	most_popular.collect{|route| [route.origin.lat]}
-  # end
+  def bookings_total_capacity
+  	bookings.sum(:cbm)
+  end
 
-  # def self.most_popular_lngs
-  # 	most_popular.collect{|route| [route.origin.lng]}
-  # end
+  def bookings_total_service
+  	bookings.sum(:price)
+  end
 end

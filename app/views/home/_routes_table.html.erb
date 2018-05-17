@@ -1,0 +1,21 @@
+<div class="mdl-card__title">
+   <h2 class="mdl-card__title-text">Most popular routes</h2>
+</div>
+  <table class="mdl-data-table mdl-js-data-table">
+  <thead>
+    <tr>
+      <th>Origin</th>
+      <th>Destination</th>
+      <th>Bookings</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% routes.each do |route| %>
+  		<tr>
+  			<td><%= route.origin.name %></td>
+  			<td><%= route.destination.name %></td>
+  			<td><%= route.bookings_count %></td>
+  		</tr>
+  	<% end %>
+  </tbody>
+</table>

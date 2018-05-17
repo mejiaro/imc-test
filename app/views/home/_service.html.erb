@@ -1,0 +1,23 @@
+<div class="mdl-card__title">
+  <h2 class="mdl-card__title-text">Sales</h2>
+</div>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+<thead>
+  <tr>
+  	<th>Freight Type</th>
+    <th>Capacity (cbm)</th>
+    <th>Service</th>
+    <th>Average price/cbm</th>
+  </tr>
+</thead>
+<tbody>
+	<% @freight_types.each do |freight_type| %>
+  <tr>
+    <td><%= freight_type.name %></td>
+    <td><%= freight_type.capacity_sold %></td>
+    <td><%= freight_type.service_sold_dollars %></td>
+    <td><%= freight_type.avg_price_cbm %></td>
+  </tr>
+  <% end %>
+</tbody>
+</table>
